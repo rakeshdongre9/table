@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Slider Example</title>
+  <style>
+    .slider-frame-wrapper {
+      overflow: hidden;
+      overflow-x: scroll;
+      cursor: grab;
+      cursor: -webkit-grab;
+    }
+
+    .slider-frame-wrapper:active {
+      cursor: grabbing;
+      cursor: -webkit-grabbing;
+    }
+  </style>
+</head>
+<body>
+  <div class="well window">
+    <div class="slider-frame-wrapper">
+      <table class="slider-frame">
+        <tr>
+          <td><input value="hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh"></td>
+          <td>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</td>
+          <td>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</td>
+          <td>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</td>
+          <td>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</td>
+          <td>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</td>
+          <td>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</td>
+          <td>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</td>
+          <td>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</td>
+          <td>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</td>
+          <td>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</td>
+          <td>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</td>
+          <td>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <script>
+    window.addEventListener('DOMContentLoaded', (event) => {
+      const sliderFrameWrapper = document.querySelector('.slider-frame-wrapper');
+      let startX = 0;
+      let startScrollLeft = 0;
+
+      sliderFrameWrapper.addEventListener('mousedown', (event) => {
+        startX = event.clientX;
+        startScrollLeft = sliderFrameWrapper.scrollLeft;
+        event.preventDefault(); // Prevent text selection during slide
+      });
+
+      sliderFrameWrapper.addEventListener('mousemove', (event) => {
+        if (!startX) return;
+
+        const deltaX = event.clientX - startX;
+        sliderFrameWrapper.scrollLeft = startScrollLeft - deltaX;
+      });
+
+      sliderFrameWrapper.addEventListener('mouseup', (event) => {
+        startX = 0;
+      });
+
+      sliderFrameWrapper.addEventListener('mouseleave', (event) => {
+        startX = 0;
+      });
+    });
+  </script>
+</body>
+</html>
